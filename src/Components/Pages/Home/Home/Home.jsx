@@ -6,6 +6,9 @@ import SectionTitle from "../SectionTitle/SectionTitle";
 import { useEffect } from "react";
 import OurMenu from "../OurMenu/OurMenu";
 import ContactUs from "../ContactUs/ContactUs";
+import RecommededChef from "../RecommededChef/RecommededChef";
+import Featured from "../Featured/Featured";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
 
@@ -20,6 +23,11 @@ const Home = () => {
 
     return (
         <div>
+
+            <Helmet>
+                <title>Bistro Boss | Home</title>
+            </Helmet>
+
             {/* Banner Section */}
             <Banner />
             {/* Popular Food */}
@@ -35,9 +43,7 @@ const Home = () => {
             </div>
             {/* Our Menu Section */}
             <div className="container mx-auto">
-            <div className="mt-5 lg:mt-24">
-                <SectionTitle heading={"From Our Menu"} subHeading={"Check it out"} />
-            </div>
+            <SectionTitle heading={"From Our Menu"} subHeading={"Check it out"} />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-2 lg:gap-10">
                 {
                     menu.slice(0,8).map(item => <OurMenu key={item._id} item={item} />)
@@ -50,6 +56,17 @@ const Home = () => {
             {/* Contact Section */}
             <div className="container mx-auto my-16">
                 <ContactUs />
+            </div>
+            {/* Recommended Chef */}
+            <div className="container mx-auto">
+            <SectionTitle heading={"Chef Recommends"} subHeading={"Should Try"} />
+            <div>
+                <RecommededChef />
+            </div>
+            </div>
+            {/* Featured Section */}
+            <div className="my-32">
+                <Featured />
             </div>
         </div>
     );
