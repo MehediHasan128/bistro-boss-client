@@ -1,4 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
+import logo from '../../../../assets/assets/logo.png';
 
 const NavBar = () => {
     
@@ -63,8 +64,15 @@ const NavBar = () => {
         <div className="navbar container mx-auto lg:py-5">
       <div className="navbar-start">
         <Link to='/'>
+            <div className="flex items-center gap-4">
+              <div>
+                <img className="w-12 lg:w-16" src={logo} alt="" />
+              </div>
+            <div>
             <h1 className="lg:text-2xl font-bold">Bistro Boss</h1>
             <p className="lg:text-lg font-medium lg:tracking-[4px] text-orange-600">Restaurant</p>
+            </div>
+            </div>
         </Link>
       </div>
       <div className="navbar-end">

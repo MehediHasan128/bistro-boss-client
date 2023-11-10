@@ -9,6 +9,7 @@ import ContactUs from "../ContactUs/ContactUs";
 import RecommededChef from "../RecommededChef/RecommededChef";
 import Featured from "../Featured/Featured";
 import { Helmet } from "react-helmet-async";
+import UserReview from "../UserReview/UserReview";
 
 const Home = () => {
 
@@ -67,6 +68,10 @@ const Home = () => {
             {/* Featured Section */}
             <div className="my-32">
                 <Featured />
+            </div>
+            {/* Testimonial Section */}
+            <div className="container mx-auto mb-32">
+                <UserReview />
             </div>
         </div>
     );
