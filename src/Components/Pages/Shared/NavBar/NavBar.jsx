@@ -60,7 +60,7 @@ const NavBar = () => {
   );
 
   return (
-    <div className="navbar text-white fixed z-10 bg-black bg-opacity-50">
+    <div className="navbar text-white fixed z-10 bg-black bg-opacity-60">
         <div className="navbar container mx-auto lg:py-5">
       <div className="navbar-start">
         <Link to='/'>

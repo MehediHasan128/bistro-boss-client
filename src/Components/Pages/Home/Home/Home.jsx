@@ -1,26 +1,19 @@
-import { useState } from "react";
 import About from "../About/About";
 import Banner from "../Banner/Banner";
 import OnlineOrder from "../OnlineOrder/OnlineOrder";
 import SectionTitle from "../SectionTitle/SectionTitle";
-import { useEffect } from "react";
 import OurMenu from "../OurMenu/OurMenu";
 import ContactUs from "../ContactUs/ContactUs";
 import RecommededChef from "../RecommededChef/RecommededChef";
 import Featured from "../Featured/Featured";
 import { Helmet } from "react-helmet-async";
 import UserReview from "../UserReview/UserReview";
+import useMenu from "../../../Hooks/useMenu";
 
 const Home = () => {
 
 
-    const [menu, setMenu] = useState([]);
-    useEffect(() =>{
-        fetch('menu.json')
-        .then(res => res.json())
-        .then(data => setMenu(data))
-    },[]);
-
+    const [menus] = useMenu();
 
     return (
         <div>
@@ -47,7 +40,7 @@ const Home = () => {
             <SectionTitle heading={"From Our Menu"} subHeading={"Check it out"} />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-2 lg:gap-10">
                 {
-                    menu.slice(0,8).map(item => <OurMenu key={item._id} item={item} />)
+                    menus.slice(0,8).map(item => <OurMenu key={item._id} item={item} />)
                 }
             </div>
             <div className="w-fit mx-auto">

@@ -4,7 +4,7 @@ import img from '../../../../assets/assets/home/featured.jpg';
 
 const Featured = () => {
     return (
-        <div className='backgroundImage py-20 md:py-24 lg:py-32 bg-fixed text-white'>
+        <div className='backgroundImage py-20 md:py-24 bg-fixed text-white'>
             <SectionTitle heading={"From Our Menu"} subHeading={"Check it out"} />
             <div className='container mx-auto flex flex-col lg:flex-row justify-center items-center gap-10'>
                 <div className='w-[90%] lg:w-[50%]'>
