@@ -8,6 +8,7 @@ import soupImg from '../../../../assets/assets/menu/soup-bg.jpg';
 import SectionTitle from "../../Home/SectionTitle/SectionTitle";
 import useMenu from "../../../Hooks/useMenu";
 import OurMenu from "../../Home/OurMenu/OurMenu";
+import FoodCategory from "../FoodCategory/FoodCategory";
 
 
 const Menu = () => {
@@ -38,42 +39,22 @@ const Menu = () => {
 
             {/* Desserts Items */}
             <div className="mt-32 mb-16">
-                <Cover img={dessertImg} title={'Desserts'} subTitle={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."} />
-                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-2 lg:gap-10 mt-24">
-                    {
-                        dessertItems.slice(0,8).map(item => <OurMenu key={item._id} item={item} />)
-                    }
-                </div>
+                <FoodCategory coverImg={dessertImg} items={dessertItems} heading={'Desserts'} />
             </div>
 
             {/* Pizza Items */}
             <div className="mt-32 mb-16">
-                <Cover img={pizzaImg} title={'Pizza'} subTitle={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."} />
-                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-2 lg:gap-10 mt-24">
-                    {
-                        pizzaItems.slice(0,8).map(item => <OurMenu key={item._id} item={item} />)
-                    }
-                </div>
+            <FoodCategory coverImg={pizzaImg} items={pizzaItems} heading={'Pizza'} />
             </div>
 
             {/* Salad Items */}
             <div className="mt-32 mb-16">
-                <Cover img={saladImg} title={'Salad'} subTitle={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."} />
-                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-2 lg:gap-10 mt-24">
-                    {
-                        saladItems.slice(0,8).map(item => <OurMenu key={item._id} item={item} />)
-                    }
-                </div>
+            <FoodCategory coverImg={saladImg} items={saladItems} heading={'Salad'} />
             </div>
 
             {/* Soup Items */}
             <div className="mt-32 mb-16">
-                <Cover img={soupImg} title={'Soup'} subTitle={"Lorem Ipsum has been the industry’s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."} />
-                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-2 lg:gap-10 mt-24">
-                    {
-                        soupItems.slice(0,8).map(item => <OurMenu key={item._id} item={item} />)
-                    }
-                </div>
+            <FoodCategory coverImg={soupImg} items={soupItems} heading={'Soup'} />
             </div>
         </div>
     );

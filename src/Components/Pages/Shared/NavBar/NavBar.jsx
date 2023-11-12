@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from '../../../../assets/assets/logo.png';
+import { BiSolidUser, BiSolidCart } from 'react-icons/bi';
 
 const NavBar = () => {
     
@@ -48,19 +49,19 @@ const NavBar = () => {
       </li>
       <li>
         <NavLink
-          to="/ourShop"
+          to="/orderFood/Salad"
           className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "text-orange-600 font-bold" : ""
           }
         >
-          Our Shop
+          Order Food
         </NavLink>
       </li>
     </>
   );
 
   return (
-    <div className="navbar text-white fixed z-10 bg-black bg-opacity-60">
+    <div className="navbar text-white md:fixed z-10 bg-black md:bg-opacity-60">
         <div className="navbar container mx-auto lg:py-5">
       <div className="navbar-start">
         <Link to='/'>
@@ -75,7 +76,16 @@ const NavBar = () => {
             </div>
         </Link>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end lg:w-full">
+        <div className="hidden lg:flex">
+          <ul className="menu menu-horizontal px-1 text-xl font-semibold">
+            {navLinks}
+          </ul>
+        </div>
+        <div className="flex gap-5 text-2xl lg:ml-16 mr-5 lg:mr-0">
+          <BiSolidCart className="cursor-pointer" />
+          <Link to='/login'><BiSolidUser className="cursor-pointer" /></Link>
+        </div>
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
@@ -95,13 +105,8 @@ const NavBar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 absolute right-0 text-black"
+            className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 absolute right-0 text-black z-10"
           >
-            {navLinks}
-          </ul>
-        </div>
-        <div className="hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 text-xl font-semibold">
             {navLinks}
           </ul>
         </div>
