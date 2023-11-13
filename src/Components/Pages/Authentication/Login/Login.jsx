@@ -5,12 +5,19 @@ import { CiLock, CiMail } from "react-icons/ci";
 import { BsGoogle, BsTwitter } from 'react-icons/bs';
 import { FaFacebookF } from 'react-icons/fa';
 import { PiEyeLight, PiEyeClosedLight } from 'react-icons/pi';
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const Login = () => {
 
-  const [showPass, setShowPass] = useState(false)
+  const {userLogin, createUserWithGoogle} = useContext(AuthContext);
+
+  const [showPass, setShowPass] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const coverStyle = (cover) => {
     return {
@@ -22,6 +29,46 @@ const Login = () => {
       backgroundImage: `url(${cover})`,
     };
   };
+
+  const { register, handleSubmit } = useForm();
+  const onSubmit = data => {
+    const {email, password} = data;
+    userLogin(email, password)
+    .then(result =>{
+      const user = result.user;
+      if(user.uid){
+        Swal.fire({
+          title: 'Congratulation',
+          text: "Login successfully",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1000
+        });
+        navigate(location?.state ? location.state : '/');
+      }
+    }).catch(err =>{
+      console.log(err);
+    });
+  };
+
+  const handelLoginWithGoogle = () =>{
+    createUserWithGoogle()
+    .then(result =>{
+      const user = result.user;
+      if(user.uid){
+        Swal.fire({
+          title: 'Congratulation',
+          text: "Create Your account successfully",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1000
+        });
+        navigate(location?.state ? location.state : '/');
+      }
+    }).catch(err =>{
+      console.log(err);
+    });
+  }
 
   return (
     <div className="hero min-h-screen" style={coverStyle(cover)}>
@@ -52,13 +99,14 @@ const Login = () => {
                 from around the world!
               </p>
             </div>
-            <form className="mt-10 md:w-[70%] mx-auto lg:w-full space-y-4">
+            <form onSubmit={handleSubmit(onSubmit)} className="mt-10 md:w-[70%] mx-auto lg:w-full space-y-4">
               <div className="flex items-center gap-3 border lg:w-[60%] mx-auto px-3 py-2 bg-white rounded-xl">
                 <CiMail className="text-2xl" />
                 <input
                   className="px-3 py-1 w-full bg-transparent focus:outline-none border-l-2"
                   type="email"
                   name="email"
+                  {...register("email")}
                   placeholder="Enter your email"
                 />
               </div>
@@ -68,6 +116,7 @@ const Login = () => {
                   className="px-3 py-1 w-full bg-transparent focus:outline-none border-l-2"
                   type={showPass? "text" : "password"}
                   name="password"
+                  {...register("password")}
                   placeholder="Enter your password"
                 />
                 {
@@ -95,7 +144,7 @@ const Login = () => {
                 <h1 className="text-lg font-semibold">------ Login With ------</h1>
             </div>
             <div className="flex justify-center text-white text-2xl gap-5">
-                <button className="bg-[#34a853] p-4 rounded-full">
+                <button onClick={handelLoginWithGoogle} className="bg-[#34a853] p-4 rounded-full">
                 <BsGoogle />
                 </button>
                 <button className="bg-[#1877f2] p-4 rounded-full">

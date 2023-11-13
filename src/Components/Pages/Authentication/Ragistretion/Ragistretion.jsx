@@ -5,18 +5,60 @@ import { CiLock, CiMail, CiUser } from "react-icons/ci";
 import { BsGoogle, BsTwitter } from "react-icons/bs";
 import { FaFacebookF } from "react-icons/fa";
 import { PiEyeLight, PiEyeClosedLight } from "react-icons/pi";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Ragistretion = () => {
-  const [showPass, setShowPass] = useState(false);
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const {createUser, setUserName, createUserWithGoogle} = useContext(AuthContext);
+
+  const [showPass, setShowPass] = useState(false);
+  const navigate = useNavigate();
+
+  const { register, handleSubmit } = useForm();
+  // , formState: { errors }
   const onSubmit = data => {
     const {name, email, password} = data;
-    console.log(name, email, password);
+    createUser(email, password)
+    .then(result =>{
+      const user = result.user;
+      setUserName(user, name)
+      if(user.uid){
+        Swal.fire({
+          title: 'Congratulation',
+          text: "Create Your account successfully",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1000
+        });
+        navigate('/')
+      }
+    }).catch(err =>{
+      console.log(err);
+    });
   };
+
+  const handelCreateUserWithGoogle = () =>{
+    createUserWithGoogle()
+    .then(result =>{
+      const user = result.user;
+      if(user.uid){
+        Swal.fire({
+          title: 'Congratulation',
+          text: "Create Your account successfully",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1000
+        });
+        navigate('/')
+      }
+    }).catch(err =>{
+      console.log(err);
+    });
+  }
 
   const coverStyle = (cover) => {
     return {
@@ -101,7 +143,7 @@ const Ragistretion = () => {
               </h1>
             </div>
             <div className="flex justify-center text-white text-2xl gap-5">
-              <button className="bg-[#34a853] p-4 rounded-full">
+              <button onClick={handelCreateUserWithGoogle} className="bg-[#34a853] p-4 rounded-full">
                 <BsGoogle />
               </button>
               <button className="bg-[#1877f2] p-4 rounded-full">
