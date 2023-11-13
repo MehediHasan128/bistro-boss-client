@@ -38,19 +38,19 @@ const OrderFood = () => {
           <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>
             <TabList>
                 <Tab>
-                    <h1 className="text-xl font-semibold">Salad</h1>
+                    <h1 className="text-lg lg:text-xl font-semibold">Salad</h1>
                 </Tab>
                 <Tab>
-                    <h1 className="text-xl font-semibold">Pizza</h1>
+                    <h1 className="text-lg lg:text-xl font-semibold">Pizza</h1>
                 </Tab>
                 <Tab>
-                    <h1 className="text-xl font-semibold">Soup</h1>
+                    <h1 className="text-lg lg:text-xl font-semibold">Soup</h1>
                 </Tab>
                 <Tab>
-                    <h1 className="text-xl font-semibold">Desserts</h1>
+                    <h1 className="text-lg lg:text-xl font-semibold">Desserts</h1>
                 </Tab>
                 <Tab>
-                    <h1 className="text-xl font-semibold">Drinks</h1>
+                    <h1 className="text-lg lg:text-xl font-semibold">Drinks</h1>
                 </Tab>
             </TabList>
             <TabPanel>
